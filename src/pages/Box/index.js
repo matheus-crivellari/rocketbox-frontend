@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+// Material design icons
+// it coould any ohter lib like FontAwesome
+import { MdInsertDriveFile } from 'react-icons/md';
+
 import './styles.css';
 import logo from '../../assets/logo.svg'
 
@@ -14,9 +18,12 @@ export default class Box extends Component {
 
             <ul>
                 <li>
-                    <a href="">
-
+                    <a href="" className="fileInfo">
+                        <MdInsertDriveFile size={24} color="#A5CFFF" />
+                        <strong>Desafio.pdf</strong>
                     </a>
+
+                    <span>há 3 minutos atrás</span>
                 </li>
             </ul>
         </div>
