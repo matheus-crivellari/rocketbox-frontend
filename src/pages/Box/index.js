@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
 import { distanceInWords } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import en from 'date-fns/locale/en';
 import Dropzone from 'react-dropzone';
 
 // Material design icons
@@ -16,6 +16,8 @@ export default class Box extends Component {
         box : {}
     }
 
+    // Fired as soon as the component is
+    // mounted and ready in the DOM.
     async componentDidMount() {
         const box = this.props.match.params.id;
         const response = await api.get(`boxes/${box}`);
@@ -27,7 +29,11 @@ export default class Box extends Component {
 
     handleUpload = (files) =>{
         files.forEach(file => {
-            console.log(file);
+            const data = new FormData();
+            const box = this.props.match.params.id;
+
+            data.append('file', file);
+            api.post(`boxes/${box}/files`, data);
         });
     }
 
@@ -43,7 +49,7 @@ export default class Box extends Component {
                     {({ getRootProps, getInputProps }) => (
                         <div className="upload" { ...getRootProps() }>
                             <input { ...getInputProps() }></input>
-                            <p>Arraste arquivos ou clique aqui</p>
+                            <p>Drop files here or just click</p>
                         </div>
                     )}
                 </Dropzone>
@@ -57,8 +63,8 @@ export default class Box extends Component {
                             </a>
 
                             <span>
-                                há{' '}
-                                {distanceInWords(file.createdAt, new Date(), {locale: pt})}
+                                {distanceInWords(file.createdAt, new Date(), {locale: en})}
+                                {' '}ago
                             </span>
                         </li>
                     )) }
