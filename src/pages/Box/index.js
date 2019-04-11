@@ -31,6 +31,10 @@ export default class Box extends Component {
     }
 
     subscribeToNewFiles = () => {
+        const box = this.props.mathc.params.id;
+        const io = socket('http://omnistack-teco.herokuapp.com');
+
+        io.emit('connectRoom', box);
 
     }
 
