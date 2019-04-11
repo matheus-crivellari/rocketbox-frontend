@@ -23,13 +23,21 @@ export default class Main extends Component {
   handleSubmit = async e => {
     e.preventDefault();
 
+    // Sends a post request through axios
+    // Awaits for the response
     const response = await api.post('boxes', {
       title : this.state.newBox
     });
 
-    console.log(response.data);
+    // Redirects to a new route passing
+    // response's id as route parameter
+    this.props.history.push(`/box/${response.data._id}`);
   }
 
+  /**
+   * Method for handling
+   * input value changing.
+   */
   handleChange = e => {
     this.setState({
       newBox : e.target.value
@@ -42,11 +50,11 @@ export default class Main extends Component {
           <form onSubmit={this.handleSubmit}>
             <img src={logo} alt=""/>
             <input
-              placeholder="Criar um box"
+              placeholder="Create a box"
               value={ this.state.newBox }
               onChange={this.handleChange}
               />
-            <button type="submit">Criar</button>
+            <button type="submit">Create</button>
           </form>
         </div>
       );
