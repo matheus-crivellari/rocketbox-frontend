@@ -31,14 +31,16 @@ export default class Box extends Component {
                 </header>
 
                 <ul>
-                    <li>
-                        <a href="" className="fileInfo">
-                            <MdInsertDriveFile size={24} color="#A5CFFF" />
-                            <strong>Desafio.pdf</strong>
-                        </a>
+                    { this.state.box.files && this.state.box.files.map(file => (
+                        <li>
+                            <a href={file.url} className="fileInfo" target="_blank">
+                                <MdInsertDriveFile size={24} color="#A5CFFF" />
+                                <strong>{file.title}</strong>
+                            </a>
 
-                        <span>há 3 minutos atrás</span>
-                    </li>
+                            <span>{file.createdAt}</span>
+                        </li>
+                    )) }
                 </ul>
             </div>
         );
