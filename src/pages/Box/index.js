@@ -3,6 +3,7 @@ import api from '../../services/api';
 import { distanceInWords } from 'date-fns';
 import en from 'date-fns/locale/en';
 import Dropzone from 'react-dropzone';
+import socket from 'socket.io-client';
 
 // Material design icons
 // it coould any ohter lib like FontAwesome
