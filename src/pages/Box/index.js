@@ -19,12 +19,18 @@ export default class Box extends Component {
     // Fired as soon as the component is
     // mounted and ready in the DOM.
     async componentDidMount() {
+        this.subscribeToNewFiles();
+
         const box = this.props.match.params.id;
         const response = await api.get(`boxes/${box}`);
 
         this.setState({
             box : response.data
         });
+    }
+
+    subscribeToNewFiles = () => {
+
     }
 
     handleUpload = (files) =>{
